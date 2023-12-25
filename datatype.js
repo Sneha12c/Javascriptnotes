@@ -1,4 +1,4 @@
-"use strict";
+console.log("kol")
 
 const userId = 1234
 let useremail = "sneha@gmail.com"

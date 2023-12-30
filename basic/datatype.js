@@ -20,7 +20,7 @@ console.log( 9*
 // boolean = true/false
 // undefined 
 // null => standalonevalue
-// 
+// symbol => uniqueness
 console.log(y);
 console.log(z);
 console.log(n);

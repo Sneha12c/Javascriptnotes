@@ -103,5 +103,6 @@ const {serviceprovider : sp } = services
 //  All properties and methods of JSON are static (just like the Math object).
 // JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, and null. It is based upon JavaScript syntax, 
 // but is distinct from JavaScript: most of JavaScript is not JSON
-
+// JavaScript APIs for WebExtensions can be used inside the extension's background scripts and in any other documents bundled with the extension, 
+// including browser action or page action popups, sidebars, options pages, or new tab pages.
 

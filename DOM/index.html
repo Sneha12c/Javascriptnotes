@@ -1,11 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>My test page</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
   </head>
-  <body>
-    <img src="images/firefox-icon.png" alt="My test image" />
+  <body class="bg-black">
+    <div class="mainclass" id="mainindex">    
+      <h1 id="heading" > Learning <span style="display: none;"> WITH  </span> DOM </h1>  
+      <h2>hjweh kwjd kwjdkj wek njwd jjn</h2> 
+      <input type="password" > click</input>
+      <ul>
+        <li class="list-item">one</li>
+        <li class="list-item">two</li>
+        <li class="list-item">three</li>
+      </ul>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, minus magni. Ratione velit autem veniam
+      quae temporibus aliquam laborum. Atque, dolorum aliquam ad deleniti odio quia quisquam fugiat minima? Est.</p>
+    </div>
   </body>
 </html>
+
+<!-- 
+document.getElementById("mainindex").id
+'mainindex'
+document.getElementById("mainindex").className
+'mainclass'
+document.getElementById("mainindex").getattribute('id')
+VM377:1 Uncaught TypeError: document.getElementById(...).getattribute is not a function
+    at <anonymous>:1:38
+(anonymous) @ VM377:1
+document.getElementById("mainindex").getAttribute('id')
+'mainindex'
+document.getElementById("mainindex").getAttribute('class')
+'mainclass'
+document.getElementById("mainindex").setAttribute('class' , 'test')
+undefined
+document.getElementById("mainindex").getAttribute('class')
+'test' -->
+<!-- document.getElementById("mainindex").style.backgroundColor = "green";
+'green'
+document.getElementById("mainindex").style.borderradius = "50px";
+'50px' -->
+
+<!-- textContents is all text contained by an element and all its children that are for formatting purposes only.
+innerText returns all text contained by an element and all its child elements.
+innerHtml returns all text, including html tags, that is contained by an element. -->
+<!-- const title = document.getElementById("heading")
+undefined
+title.textContent
+' Learning  WITH   DOM '
+title.innerHTML
+' Learning <span style="display: none;"> WITH  </span> DOM '
+title.innerText
+'Learning DOM' 
+
+// queryselector
+document.querySelector('.mainclass')
+<div class=​"mainclass" id=​"mainindex">​…​</div>​
+document.querySelector('#mainindex')
+<div class=​"mainclass" id=​"mainindex">​…​</div>​
+
+document.querySelector('input[type="email"]')
+null
+document.querySelector('input[type="password"]')
+<input type=​"password">​
+
+document.querySelector('ul')
+<ul>​…​</ul>​
+const list = document.querySelector('ul')
+undefined
+
+list.querySelector('li')
+<li>​…​</li>​
+document.querySelectorAll('ul')
+NodeList [ul]
+Nodelist is different from array as its prototype has not function push pop and map
+
+templist = document.querySelectorAll('ul')
+NodeList [ul]
+templist[0].style.backgroundcolor = 'green'
+'green'
+templist[0].style.color = 'green'
+'green'
+templist[0].style.backgroundColor = 'red'
+'red'
+
+document.getElementsByClassName('list-item')
+HTMLCollection(3) [li.list-item, li.list-item, li.list-item]
+templist = document.getElementsByClassName('list-item')
+HTMLCollection(3) [li.list-item, li.list-item, li.list-item]
+templist.forEach( function name(params) {
+  console.log (params) ? not working
+})
+undefined
+
+myconvertedarr = Array.from(templist)
+(3) [li.list-item, li.list-item, li.list-item]
+myconvertedarr.forEach(function (li) {
+    li.style.color = 'green'
+})
+myconvertedarr.forEach(function (li) {
+    li.style.backgroundcolor = 'red'
+})
+-->

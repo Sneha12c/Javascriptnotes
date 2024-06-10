@@ -13,16 +13,50 @@
   </head>
   <body class="bg-black">
     <div class="mainclass" id="mainindex">    
-      <h1 id="heading" > Learning <span style="display: none;"> WITH  </span> DOM </h1>  
-      <h2>hjweh kwjd kwjdkj wek njwd jjn</h2> 
-      <input type="password" > click</input>
-      <ul>
-        <li class="list-item">one</li>
-        <li class="list-item">two</li>
-        <li class="list-item">three</li>
-      </ul>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, minus magni. Ratione velit autem veniam
-      quae temporibus aliquam laborum. Atque, dolorum aliquam ad deleniti odio quia quisquam fugiat minima? Est.</p>
+      <div class="month" >January</div> 
+      <div class="month" >Febuary</div>
+      <div class="month" >March</div>
+      <div class="month" >April</div>
     </div>
+    <ul class="subjects">
+      <li>Math</li>
+    </ul>
   </body>
+  <script>
+    const heading = document.querySelector('.mainclass');
+    console.log(heading.children);
+    // for(let i=0; i< heading.children.length; i++)
+    // console.log(heading.children[i]);
+    // heading.firstElementChild.style.color = "green";
+    // heading.lastElementChild.style.color = "red";
+    const monthone = document.querySelector('.month')
+    // console.log(monthone); 
+    // console.log(monthone.nextElementSibling);
+    // console.log(heading.childNodes);
+    // NodeList(9) [text, div.month, text, div.month, text, div.month, text, div.month, text]
+    // HTML collection is different from Array
+    // const divele = document.createElement('div');
+    // divele.className = 'main';
+    // divele.id = 'mainid';
+    // divele.setAttribute('title' , 'fillform');
+    // divele.style.background = 'green';
+    // // divele.innerText = "this is starting of new era";
+    // const text = document.createTextNode("hello new era");
+    // divele.appendChild(text);
+    // document.body.appendChild(divele);
+    function addsubject( subject ){
+     const newli = document.createElement('li');
+     newli.innerText = subject;
+     document.body.querySelector('.subjects').appendChild(newli);
+    }
+    addsubject('chemistry');
+    const secondlang = document.querySelector('li:nth-child(2)');
+    // const newlang = document.createElement('li');
+    // newlang.textContent = 'physics';
+    // secondlang.replaceWith(newlang);
+    // secondlang.outerHTML = '<li>physics</li>'
+    const lastsub = document.querySelector('li:last-child');
+    lastsub.remove();
+
+  </script>
 </html>

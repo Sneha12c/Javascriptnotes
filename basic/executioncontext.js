@@ -1,5 +1,5 @@
 // Javascript exexution context refers to when file will be created , how script run and will be executed
-// Javascript is single Threaded
+// Javascript is single Threaded is one that can execute only one task at a time.
 // First step is global execution context and it is pointing to variable this keyword and every environment has different global ec 
 // browser  - global ec or this value is window object
 //  2 Functional Execution Context 3.) Eval Execution Context

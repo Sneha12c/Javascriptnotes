@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // javascript is a sequential language but some exception are there like asynchronuos , browser events
+    document.getElementById('owl').onClick = function(){ 
+        alert("how are you?")};
+    // addevent listener provide more feature
+    // document.getElementById('owl').addEventlistener('click' , function(){ 
+    //     alert("how are you?")}
+    // );
+    document.getElementById('owl').addEventListener('click' , function(e){ 
+        //  console.log(e.timeStamp);
+        console.log(e.srcElement.ondrag);
+    });
+    // type , timestamp , defaultprevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+    // Pointer events have ten event types, seven of which have similar semantics to their mouse event counterparts (down, up, move, over, out, enter, and leave).
+    // The timeStamp read-only property of the Event interface returns the time (in milliseconds) at which the event was created.
+    // The preventDefault() method of the Event interface tells the user agent that if the event does not get explicitly handled, its default action should not be taken as it normally would be.
+    // The read-only target property of the Event interface is a reference to the object onto which the event was dispatched.
+    // The currentTarget read-only property of the Event interface identifies the element to which the event handler has been attached.
+    
+    // Event propagation - two context - event public and event capturing
+    // by default - false - event public
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()
+    // }, false)
+    
+    // document.getElementById('images').addEventListener('click',function(e){
+    //     console.log("images clicked");
+    //     e.preventDefault();
+    // }, false)
+    // bubling - inside to outside  - owl first
+    // capturing - outside to inside - images first 
+    // we can stop propagation using e.stopPropagation()
+    document.getElementById('images').addEventListener( 'click' , function(e){
+       console.log(e.target.tagName);
+       if(e.target.tagName == 'IMG'){
+        let removeit = e.target.parentNode;
+        removeit.remove();
+        // or removit.parentNode.removeChild(removeit);  
+       }
+    })
+
+</script>
+</html>

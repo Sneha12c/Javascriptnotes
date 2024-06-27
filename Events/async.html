@@ -1,0 +1,51 @@
+<!-- 
+ Javasript is a synchronous language and single threaded
+ executionstack - executes code one at a time
+ blocking code - block the flow of a program - read file sync code
+ non-blocking code - not block the execution - async read file
+ https://medium.com/@kamaleshs48/event-loop-in-javascript-c332b0f81b1e
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="heading">Javasript code</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+//    const sayhello = function(){
+//     console.log("say hello to everyone ");
+//    }
+//    const changebg = function(){
+//     const change = document.querySelector('.heading');
+//     change.style.backgroundColor = 'green';
+//     console.log(change.backgroundColor);
+//    }
+//    const chan = setTimeout(changebg , 2000);
+//    document.querySelector('#stop').addEventListener( 'click' ,  function(){
+//     clearTimeout(chan);
+//     console.log('not acsnge bg');
+//    });
+      
+      const telldate = function(str){
+        console.log("hello "+ str + Date.now());
+      }
+      document.querySelector('#start').addEventListener('click' , function(){
+        const intervalid = setInterval( telldate, 2000 , "hi");
+        document.querySelector("#stop").addEventListener( 'click' ,function(){
+          clearInterval(intervalid);
+        });
+      })
+//       SetTimeout(function/function reference,milliseconds) 
+// ClearTimeout(variable which hold the reference of settimeout)
+// SetInterval(function /functiom reference, milisecond , thirdparameter(optional)) - repeat until we clear it. 
+// ClearInterval(reverence of function)
+
+</script>
+</html>
+

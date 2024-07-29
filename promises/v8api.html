@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    0	UNSENT	Client has been created. open() not called yet.
+    1	OPENED	open() has been called.
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+    3	LOADING	Downloading; responseText holds partial data.
+    4	DONE	The operation is complete.
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/Sneha12c'
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            // console.log(this.responseText);
+            const data = JSON.parse(this.responseText)
+            // console.log( data);
+            console.log(typeof data);
+            console.log(data.followers);
+        }
+    }
+    xhr.send();
+</script>
+</html>
+<!-- API requests and the V8 engine are two separate concepts, but they are both relevant to web development,
+  particularly when working with JavaScript.
+
+API Requests:
+An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate 
+and interact with each other. In the context of web development, APIs are commonly used to request and exchange data between a client 
+(usually a web browser or a mobile app) and a server.
+API requests are a way for the client to request specific data or perform certain actions from the server.
+ This is typically done using HTTP methods like GET, POST, PUT, DELETE, etc.
+  The client sends a request to the server, and the server responds with the requested data or performs the requested action.
+
+For example, in JavaScript, you can make API requests using various methods, such as the fetch() function or libraries 
+like Axios or jQuery. Here's a simple example using fetch():
+
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => {
+    // Process the data received from the API
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+V8 Engine:
+The V8 engine is an open-source JavaScript engine developed by Google. It is at the core of many modern web browsers, 
+including Google Chrome and Chromium-based browsers, as well as Node.js. The primary purpose of the V8 engine is to execute
+ JavaScript code in these environments.
+
+The V8 engine is responsible for translating JavaScript code into machine code that the computer's processor can execute.
+ It uses Just-In-Time (JIT) compilation to optimize the performance of JavaScript execution.
+
+Because of its efficiency and speed, the V8 engine significantly improves the performance of JavaScript applications and allows developers
+ to build complex and high-performance web applications.
+
+In summary, API requests and the V8 engine are both essential components of modern web development
+. API requests enable communication and data exchange between clients and servers, while 
+the V8 engine optimizes the execution of JavaScript code, making it possible to build fast and efficient web applications.
+ -->

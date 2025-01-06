@@ -34,3 +34,12 @@ const text = await new Response(blob).text();
 
 // Or by using Blob.text():
 const text2 = await blob.text();
+
+// The DataTransfer object is used to hold any data transferred between contexts, such as a drag and drop operation, or 
+// clipboard read/write. It may hold one or more data items, each of one or more data types.
+
+// The DataTransfer.getData() method retrieves drag data (as a string) for the specified type. If the drag operation does 
+// not include data, this method returns an empty string.
+// Example data types are text/plain and text/uri-list.
+
+getData(format)

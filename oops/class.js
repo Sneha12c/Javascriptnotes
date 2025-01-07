@@ -139,14 +139,90 @@ anotherUsername.trueLength()
 "  iceTea".trueLength()
 
 // CALL and THIS
+// The call method allows you to invoke any function while explicitly setting the this value. 
+// Its syntax is func.call(thisArg, arg1, arg2, ...). 
+// Here, thisArg is the value to use as this, whereas arg1, arg2, etc., are the arguments to pass to the function.
 
-function setusername(){
-  this.username = username;
+function setusername(usename){
+  this.usename = usename;
+}
+
+function login(){
+   // setusername(usename); // only reference is passed
+   setusername.call(this , usename); 
+   email = this.email;
+   password = this.password;
+}
+
+const user1 = new login("chai", "chai@fb.com", "123")
+console.log(user1);
+
+// Bind
+// The bind method creates a new function with a specified this value, and can also include predefined arguments. Its syntax is:
+
+let boundFunc = func.bind(thisArg, arg1, arg2, …)
+
+// Unlike call and apply, bind doesn't immediately execute the function but rather returns a new function that can be invoked 
+// later with the specified this context and arguments.
+
+// Example using bind:
+function greet() {
+  console.log(`${this.greeting},this.name}!`);
+}
+
+const person = {
+  name: 'Alice',
+  greeting: 'Hi'
+  };
+
+const greetBoundToPerson = greet.bind(person);
+
+greetBoundToPerson(); // Output: Hi, Alice!
+// In this example, we create a new function greetBoundToPerson by using bind on the greet function with person as thethis context. 
+// When greetBoundToPersonis invoked, it uses personas thethis context.
+
+// ES6
+
+class User {
+   constructor(username, email, password){
+       this.username = username;
+       this.email = email;
+       this.password = password
+   }
+
+   encryptPassword(){
+       return `${this.password}abc`
+   }
+   changeUsername(){
+       return `${this.username.toUpperCase()}`
+   }
+
+}
+
+const chai = new User("chai", "chai@gmail.com", "123")
+
+console.log(chai.encryptPassword());
+console.log(chai.changeUsername());
+
+// behind the scene
+
+function User(username, email, password){
+   this.username = username;
+   this.email = email;
+   this.password = password
+}
+
+User.prototype.encryptPassword = function(){
+   return `${this.password}abc`
+}
+User.prototype.changeUsername = function(){
+   return `${this.username.toUpperCase()}`
 }
 
 
+const tea = new User("tea", "tea@gmail.com", "123")
 
-
-
+console.log(tea.encryptPassword());
+console.log(tea.changeUsername());
 
 

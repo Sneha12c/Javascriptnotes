@@ -21,14 +21,14 @@ if(!shoppingCart.includes('Sugar')){
 console.log(shoppingCart);
 // shoppingCart.remove('Honey');
 let ind = 0;
-shoppingCart.foreach((ele)=>{
-   if(ele != 'Honey'){
-     ind++;
-    }
-    else{
-    //  break;
-    }
-})
+// shoppingCart.foreach((ele)=>{
+//    if(ele != 'Honey'){
+//      ind++;
+//     }
+//     else{
+//     //  break;
+//     }
+// })
 console.log(ind);
 shoppingCart.slice(ind , 1);
 console.log(shoppingCart);
@@ -300,3 +300,54 @@ function isempty(anyval){
 }
 
 
+// Some array method exercise
+function camelize(str){
+  let res = str.split("-").reduce((prev , curr, index)=>{
+    if(index!=0){
+      let newstr = curr[0].toUpperCase() + curr.substr(1, curr.length-1);
+      return prev+newstr;
+    }
+    return prev;
+  })
+  return res;
+}
+
+console.log(camelize("background-color"));
+console.log(camelize("list-style-image") == 'listStyleImage');
+console.log(camelize("-webkit-transition") == 'WebkitTransition');
+
+// Create keyed object from array
+let users1 = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
+
+function groupById(arr){
+  return arr.reduce((prev, curr)=>{
+    let newobj = prev;
+    newobj[curr.id] = curr;
+    return newobj;
+  }, {});
+}
+
+let usersById = groupById(users1);
+console.log(usersById);
+
+// Get average age
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 29 };
+
+let arr23 = [ john, pete, mary ];
+
+function getAverageAge(arr){
+  let len = 0;
+  let sum = arr.reduce((prev, curr)=>{
+    len += 1;
+    return prev + curr.age;
+  }, 0)
+  return (sum/len);
+}
+
+console.log( getAverageAge(arr23) );

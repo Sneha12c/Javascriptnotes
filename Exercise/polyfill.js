@@ -202,3 +202,174 @@ function debouncing(func , delay=3000){
   }
 }
 
+// JavaScript Implementations:
+//https://css-tricks.com/debouncing-throttling-explained-examples/
+
+// Classnames
+function classNames(...args) {
+  const classes = [];
+  args.forEach((arg)=>{
+    if(!arg){
+      return;
+    }
+    const argType = typeof arg;
+    if(argType === 'string' || argType === 'number'){
+      classes.push(arg);
+      return;
+    }
+    if(Array.isArray(arg)){
+      classes.push(classNames(...arg));
+      return;
+    }
+    if(argType === 'object') {
+      for(const key in arg) {
+        if(Object.hasOwn(arg , key) && arg[key]) {
+          classes.push(key);
+        }
+      }
+      return;
+    }
+  })
+  return classes.join(' ');
+}
+
+// Flatten
+function Flatten(arr){
+    if(!Array.isArray(arr)) return [];
+    return arr.reduce((prev , curr)=>{
+       if(Array.isArray(curr)){
+         return prev.concat(Flatten(curr));
+       }
+       prev.push(curr);
+       return prev;
+    },[]);
+}
+
+// Deep Equal
+function deepequal(a , b){
+    // same reference
+   if(a===b){
+     return true;
+   }
+   // handle null
+   if (a === null || b === null) return false;
+   let typea = typeof a;
+   let typeb = typeof b;
+   // different types
+   if(typea !== typeb) return false;
+   // Non-object types
+   if(typea !== 'object') return false;
+   // handle Array 
+   if(Array.isArray(a)){
+     if(!Array.isArray(b) || a.length !== b.length ) return false;
+     for(let i=0; i<a.length; i++){
+        if(!deepequal(a[i], b[i])) return false;
+     }
+     return true;
+   }
+   keysa = Object.keys(a);
+   keysb = Object.keys(b);
+   if(keysa.length !== keysb.length) return false;
+
+   for(const k of keysa){
+    if(!Object.prototype.hasOwnProperty.call(b , k)) return false;
+    if(!deepequal(keysa[k], keysb[k])) return false;
+   }
+
+   return true;
+}
+
+// Event Emitter
+class Eventemitter{
+    constructor(){
+       this.events = new Map();
+    }
+
+    on(eventName, listener){
+       if(!this.events.has(eventName)){
+        this.events.set(eventName, new Set());
+       }
+       this.events.get(eventName).add(listener);
+       return this;
+    }
+
+    off(eventName, listener){
+       const listeners = this.events.has(eventName);
+       if(!listener){
+        return this;
+       }
+       listeners.delete(listener);
+       if(listener.size === 0){
+        this.events.delete(eventName);
+       }
+       return this;
+    }
+    
+    emit(eventName, ...args){
+       const listeners = this.events.has(eventName);
+       if(!listeners) return false; 
+       [...listeners].forEach((listener)=>{
+         listener(...args);
+       })
+       return true;
+    }
+}
+
+
+// Map Async Limit
+// @param {Array} arr - The array to iterate over.
+// @param {number} limit - The maximum number of iterators to run at any time.
+// @param {Function} iteratorFn - An async function to apply to each item.
+// @returns {Promise<Array>} A promise that resolves with an array of results
+
+function mapAsyncLimit(iterator, limit , callbackfn){
+    return new Promise((resolve, reject)=>{
+        let total = iterator.length;
+        if(total === 0){
+            resolve([]);
+            return;
+        }
+        const results = [];
+        let index = 0;
+        let running = 0;
+        let completed = 0;
+        async function runNext() {
+          if(completed === total){
+            return resolve(results);
+          }
+          if(index < total && running < limit){
+            let curr = index;
+            index++;
+            running++;
+            try{
+              let res = await callbackfn(iterator[index], index, iterator);
+              results[curr] = res;
+              running--;
+              completed++;
+              runNext();
+            }catch(err){
+              reject(err);
+            }
+          }
+        }
+        for(let i=0; i<total && i<size; i++){
+            runNext();
+        }
+    })
+    
+}
+
+// Deep Clone
+function deepClone(value){
+   if(typeof value !== 'object' && value === null){
+    return value;
+   }
+   if(Array.isArray(value)){
+    return value.map((item)=> deepClone(item));
+   }
+   return Object.fromEntries(
+    Object.entries(([key , value]) => [key ,deepClone(value)]),
+   );
+}
+
+
